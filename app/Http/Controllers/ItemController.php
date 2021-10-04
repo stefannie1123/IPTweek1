@@ -24,12 +24,12 @@ class ItemController extends Controller
             'quantity'      => 'required|numeric',
         ]);
         $item = Item::create($request->all());
-        event(new LogEvent("Deleted an item with ID#$item->id"));
+        event(new LogEvent("Created an item with ID#$item->id"));
         return redirect('/item');
     }
 
     public function edit(Item $item) {
-        return view('update', compact('item'));   
+        return view('edit', compact('item'));   
     }
 
     public function update(Item $item, Request $request) {
@@ -40,7 +40,7 @@ class ItemController extends Controller
             'quantity'      => 'required|numeric',
         ]);       
         $item->update($request->all());
-        event(new LogEvent("Deleted an item with ID#$item->id"));
+        event(new LogEvent("Updated an item with ID#$item->id"));
         return redirect('/item');        
     }
 
